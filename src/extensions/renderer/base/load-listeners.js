@@ -698,6 +698,7 @@ BRp.load = function(){
 
         }
 
+        cy.emit('dragpan');
         cy.panBy( deltaP );
 
         r.hoverData.dragged = true;
@@ -1084,6 +1085,7 @@ BRp.load = function(){
         newZoom = r.gestureStartZoom * e.scale;
       }
 
+      cy.emit('scrollzoom');
       cy.zoom( {
         level: newZoom,
         renderedPosition: { x: rpos[0], y: rpos[1] }
@@ -1602,6 +1604,7 @@ BRp.load = function(){
           }
         }
 
+        cy.emit('pinchzoom');
         cy.viewport( {
           zoom: zoom2,
           pan: pan2,
@@ -1740,6 +1743,8 @@ BRp.load = function(){
             r.data.bgActivePosistion = math.array2point( r.touchData.startPosition );
           }
 
+          cy.emit('dragpan');
+          
           if( r.swipePanning ){
             cy.panBy( {
               x: disp[0] * zoom,
